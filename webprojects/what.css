@@ -1,0 +1,724 @@
+
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+}
+
+
+body{
+margin: 0;
+min-height: 100vh;
+text-align: center;
+
+font-family: Arial, sans-serif;
+}
+
+
+h1
+ {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', sans-serif;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.5px;
+
+}
+
+  .search-box {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      border: 2px solid #888;
+      border-radius: 25px;
+      padding: 8px 12px;
+    }
+
+ .search-box {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    font-family: Arial, sans-serif;
+}
+
+
+    .search-box input {
+      border: none;
+      outline: none;
+      flex: 1;
+      color: white;
+      background: transparent;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+    }
+ 
+    .search-box button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+
+
+.search-box input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.search-box input:focus {
+    border-color: #4a90e2;
+}
+
+body {
+    background-image: url('white-clouds-in-blue-sky-photo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+}
+
+
+.weather-card {
+    background: linear-gradient(135deg, #0b2a2f, #0a1a1f);
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin: 20px auto 0;
+    text-align: center;
+}
+
+.temp {
+    font-size: 6rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.feels,
+.range,
+.rain 
+
+{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 8px 0;
+}
+.globe {
+    display: inline-block;
+    animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+
+
+.search-box {
+    position: relative;
+}
+
+.suggestions {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    text-align: left;
+    z-index: 10;
+    display: none;
+    overflow: hidden;
+}
+
+.suggestions.show {
+    display: block;
+}
+
+.suggestions li {
+    padding: 10px 16px;
+    cursor: pointer;
+    color: #0b2a2f;
+}
+
+.suggestions li small {
+    display: block;
+    color: #888;
+}
+
+.suggestions li:hover,
+.suggestions li.active {
+    background: #eaf3ff;
+}
+
+.fade-update {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.forecast-card {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto 0;
+    perspective: 1200px;
+}
+
+.forecast-inner {
+    display: grid;
+    transform-style: preserve-3d;
+    transition: transform 0.7s ease;
+}
+
+.forecast-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.forecast-face {
+    grid-area: 1 / 1;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: linear-gradient(135deg, #0b2a2f, #0a1a1f);
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    min-width: 0;
+}
+
+.forecast-back {
+    transform: rotateY(180deg);
+}
+
+/* Only the visible side can be clicked */
+.forecast-inner.flipped .forecast-front,
+.forecast-inner:not(.flipped) .forecast-back {
+    pointer-events: none;
+}
+
+/* Days look clickable */
+.forecast-list li.clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.forecast-list li.clickable:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-3px);
+}
+
+/* Back side */
+.hourly-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.hourly-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.flip-back {
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+}
+
+.flip-back:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.hourly-list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 12px;
+    overflow-x: auto;
+}
+
+.hourly-list li {
+    flex: 0 0 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 12px 6px;
+    text-align: center;
+}
+
+.hour-time {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.hour-icon {
+    font-size: 1.5rem;
+}
+
+.hour-bar-wrap {
+    height: 70px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hour-bar {
+    width: 10px;
+    border-radius: 5px;
+    background: linear-gradient(#7fd1ff, #4a90e2);
+}
+
+.hour-temp {
+    font-weight: 700;
+}
+
+.hour-rain {
+    font-size: 0.7rem;
+    color: #7fd1ff;
+}
+
+.hourly-list::-webkit-scrollbar {
+    height: 6px;
+}
+
+.hourly-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+.forecast-list {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.forecast-list li {
+    flex: 0 0 150px;
+    scroll-snap-align: start;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 15px 12px;
+    text-align: center;
+    border-bottom: none;
+}
+
+.forecast-list li.forecast-loading {
+    flex: 1;
+    background: none;
+}
+
+.day-name {
+    font-weight: 700;
+}
+
+.day-name small {
+    display: block;
+    font-weight: 400;
+    opacity: 0.6;
+    font-size: 0.75rem;
+    margin-top: 2px;
+}
+
+.day-icon {
+    display: block;
+    font-size: 2.2rem;
+    margin: 10px 0;
+}
+
+.day-temps {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.day-temps span {
+    opacity: 0.6;
+    font-weight: 400;
+}
+
+.day-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.day-stats span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+
+.outfit {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: #7fd1ff;
+}
+
+/* Slim scrollbar */
+.forecast-list::-webkit-scrollbar {
+    height: 6px;
+}
+.forecast-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.locate-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: #4a90e2;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.locate-btn:hover {
+    background: #357abd;
+    transform: translateX(-50%) scale(1.1);
+}
+
+.locate-btn:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+.daily-summary {
+    margin-bottom: 22px;
+}
+
+.summary-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.summary-icon {
+    font-size: 2.5rem;
+}
+
+.summary-label {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.summary-text {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 6px;
+    text-align: center;
+}
+
+.stat small {
+    display: block;
+    font-size: 0.65rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.stat strong {
+    font-size: 0.85rem;
+}
+
+.hourly-label {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.hour-wind {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.7rem;
+}
+
+.wind-arrow {
+    display: inline-block;
+    font-size: 1rem;
+    color: #7fd1ff;
+}
+
+.hour-uv {
+    font-size: 0.7rem;
+}
+
+/* ---------- Weather background layers ---------- */
+.weather-bg-wrap,
+.weather-fx {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.weather-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    background-size: cover;
+    background-position: center;
+}
+
+.weather-bg.visible {
+    opacity: 1;
+}
+
+/* One background for each kind of weather */
+.theme-sunny        { background-image: linear-gradient(180deg, #1e78e6 0%, #6fb7ff 55%, #cfe9ff 100%); }
+.theme-partly       { background-image: linear-gradient(180deg, #3f86d9 0%, #8cc2ee 60%, #d6e8f7 100%); }
+.theme-cloudy       { background-image: linear-gradient(180deg, #5f6f80 0%, #9aa8b6 60%, #c3ccd5 100%); }
+.theme-fog          { background-image: linear-gradient(180deg, #8e9aa5 0%, #b9c0c7 60%, #d9dde1 100%); }
+.theme-rain         { background-image: linear-gradient(180deg, #1f2f3f 0%, #3a5063 60%, #566e82 100%); }
+.theme-storm        { background-image: linear-gradient(180deg, #0d1219 0%, #232c3a 60%, #3a4658 100%); }
+.theme-snow         { background-image: linear-gradient(180deg, #8fa6bb 0%, #c9d6e2 60%, #eef3f7 100%); }
+.theme-night        { background-image: linear-gradient(180deg, #050a1f 0%, #101f45 60%, #25386b 100%); }
+.theme-partly-night { background-image: linear-gradient(180deg, #0a1230 0%, #1b2d57 60%, #34487a 100%); }
+
+/* To use your own photo instead, swap in an image, for example:
+.theme-rain { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('rain.jpg'); } */
+
+/* ---------- Effects ---------- */
+.drop {
+    position: absolute;
+    top: -80px;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.7));
+    transform: rotate(12deg);
+    animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+    from { transform: translate(0, 0) rotate(12deg); }
+    to   { transform: translate(-60px, 115vh) rotate(12deg); }
+}
+
+.flake {
+    position: absolute;
+    top: -20px;
+    background: white;
+    border-radius: 50%;
+    animation: snowFall linear infinite;
+}
+
+@keyframes snowFall {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(40px, 110vh); }
+}
+
+.lightning {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    animation: flash 8s infinite;
+}
+
+@keyframes flash {
+    0%, 90%, 100% { opacity: 0; }
+    91% { opacity: 0.8; }
+    92% { opacity: 0.1; }
+    93% { opacity: 0.9; }
+    96% { opacity: 0; }
+}
+
+.sun {
+    position: absolute;
+    top: -80px;
+    right: -60px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,244,190,0.95) 0%, rgba(255,214,102,0.5) 35%, rgba(255,214,102,0) 70%);
+    animation: sunPulse 6s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1);    opacity: 0.9; }
+    50%      { transform: scale(1.08); opacity: 1; }
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50%      { opacity: 1; }
+}
+
+.cloud {
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    filter: blur(18px);
+    animation: cloudDrift linear infinite;
+}
+
+@keyframes cloudDrift {
+    from { transform: translateX(-450px); }
+    to   { transform: translateX(110vw); }
+}
+
+/* Readable text on the light backgrounds */
+body[data-weather="snow"] h1,
+body[data-weather="fog"] h1,
+body[data-weather="snow"] .search-box input,
+body[data-weather="fog"] .search-box input {
+    color: #0b2a2f;
+}
+
+/* Respect people who turn animations off on their device */
+@media (prefers-reduced-motion: reduce) {
+    .weather-fx { display: none; }
+}
+.radar-card {
+    background: linear-gradient(135deg, #0b2a2f, #0a1a1f);
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto 0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.radar-map {
+    height: 340px;
+    border-radius: 15px;
+    overflow: hidden;
+    isolation: isolate;   /* keeps map layers behind your search dropdown */
+    background: #0a1a1f;
+    font-family: inherit;
+}
+
+.radar-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.radar-btn {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: #4a90e2;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.radar-btn:hover {
+    background: #357abd;
+}
+
+#radarSlider {
+    flex: 1;
+    min-width: 0;
+    accent-color: #4a90e2;
+}
+
+.radar-time {
+    min-width: 115px;
+    text-align: right;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.radar-credit {
+    margin: 12px 0 0;
+    font-size: 0.7rem;
+    opacity: 0.55;
+}
+
+.radar-credit a {
+    color: #7fd1ff;
+}

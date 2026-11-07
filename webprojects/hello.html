@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head viewport="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="what.css">
+    <title>Weather.com</title>
+</head>
+<body>
+   
+   
+    <h1>WEATHER.C<i class="fa-solid fa-earth-africa globe"></i>M</h1>
+   
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search location..." autocomplete="off">
+    <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <ul id="suggestions" class="suggestions"></ul>
+</div>
+
+
+<br>
+ <br>
+
+
+<div class="weather-card">
+    <h3 class="location" id="locationName">Kempton Park, Gauteng</h3>
+    <h2 class="temp" id="temp">74°</h2>
+    <p class="feels" id="feels">Feels Like 74°</p>
+    <p class="range" id="range">High 87° | Low 62°</p>
+    <p class="rain" id="rain">Chance of Rain 14%</p>
+</div>
+
+<div class="forecast-card">
+    <div class="forecast-inner" id="forecastInner">
+
+        <!-- Front: the 7 days -->
+        <div class="forecast-face forecast-front">
+            <h2 class="card-title">7-Day Forecast</h2>
+            <ul class="forecast-list" id="forecastList">
+                <li class="forecast-loading">Search a location to see the forecast</li>
+            </ul>
+        </div>
+
+        <!-- Back: hourly temperatures for the chosen day -->
+        <div class="forecast-face forecast-back">
+    <div class="hourly-header">
+        <button class="flip-back" id="flipBack">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+        <div class="hourly-title" id="hourlyTitle">Hourly</div>
+    </div>
+
+    <div class="daily-summary" id="dailySummary"></div>
+
+    <div class="hourly-label">Hour by hour</div>
+    <ul class="hourly-list" id="hourlyList"></ul>
+</div>
+
+
+
+    </div>
+</div>
+
+
+<div class="radar-card">
+    <h2 class="card-title">Rain Radar</h2>
+
+    <div class="radar-map" id="radarMap"></div>
+
+    <div class="radar-controls">
+        <button class="radar-btn" id="radarPlay" title="Play / pause">
+            <i class="fa-solid fa-pause"></i>
+        </button>
+        <input type="range" id="radarSlider" min="0" max="0" value="0">
+        <span class="radar-time" id="radarTime">Loading...</span>
+    </div>
+
+    <p class="radar-credit">
+        Weather data by <a href="https://www.rainviewer.com" target="_blank" rel="noopener">RainViewer</a>
+        · Map © OpenStreetMap contributors, © CARTO
+    </p>
+</div>
+
+<button class="locate-btn" id="locateBtn" title="Find my location">
+    <i class="fa-solid fa-location-crosshairs"></i>
+</button>
+        
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="java.js"></script>
+</body>
+
+</html>
